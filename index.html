@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Things to do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Light Theme Todo List -->
+        <div class="todo-card">
+            <h2>Things to do</h2>
+            <div class="todo-list" id="todoList1">
+                <div class="todo-item" data-id="1">
+                    <input type="checkbox" class="checkbox" checked>
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item" data-id="2">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item indented" data-id="3">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">Indented to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item" data-id="4">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            </div>
+            <div class="input-section">
+                <input type="text" id="input1" placeholder="Add new task...">
+                <button onclick="addTask(1)">Add</button>
+            </div>
+        </div>
+
+        <!-- Dark Theme Todo List -->
+        <div class="todo-card dark">
+            <h2>Things to do</h2>
+            <div class="todo-list" id="todoList2">
+                <div class="todo-item" data-id="1">
+                    <input type="checkbox" class="checkbox" checked>
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item" data-id="2">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item indented" data-id="3">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">Indented to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+                <div class="todo-item" data-id="4">
+                    <input type="checkbox" class="checkbox">
+                    <span class="todo-text">to-do item</span>
+                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            </div>
+            <div class="input-section">
+                <input type="text" id="input2" placeholder="Add new task...">
+                <button onclick="addTask(2)">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
