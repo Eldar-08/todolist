@@ -1,76 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Things to do</title>
+    <title>Advanced Todo List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <!-- Light Theme Todo List -->
-        <div class="todo-card">
-            <h2>Things to do</h2>
-            <div class="todo-list" id="todoList1">
-                <div class="todo-item" data-id="1">
-                    <input type="checkbox" class="checkbox" checked>
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item" data-id="2">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item indented" data-id="3">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">Indented to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item" data-id="4">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-            </div>
-            <div class="input-section">
-                <input type="text" id="input1" placeholder="Add new task...">
-                <button onclick="addTask(1)">Add</button>
-            </div>
-        </div>
 
-        <!-- Dark Theme Todo List -->
-        <div class="todo-card dark">
-            <h2>Things to do</h2>
-            <div class="todo-list" id="todoList2">
-                <div class="todo-item" data-id="1">
-                    <input type="checkbox" class="checkbox" checked>
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item" data-id="2">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item indented" data-id="3">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">Indented to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
-                </div>
-                <div class="todo-item" data-id="4">
-                    <input type="checkbox" class="checkbox">
-                    <span class="todo-text">to-do item</span>
-                    <button class="btn-delete" onclick="deleteItem(this)">Delete</button>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="container">
+        <!-- Todo List Card -->
+        <div class="todo-card">
+            <div class="card-header">
+                <h2>My Tasks</h2>
+                <div class="stats">
+                    <span class="stat-item">📋 <strong id="totalCount">0</strong></span>
+                    <span class="stat-item">✅ <strong id="completedCount">0</strong></span>
                 </div>
             </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter-section">
+                <input type="text" id="searchInput" placeholder="🔍 Search tasks..." class="search-input">
+                <select id="priorityFilter" class="filter-select">
+                    <option value="">All Priorities</option>
+                    <option value="high">🔴 High</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="low">🟢 Low</option>
+                </select>
+                <select id="sortSelect" class="filter-select">
+                    <option value="date-added">Date Added</option>
+                    <option value="priority">Priority</option>
+                    <option value="due-date">Due Date</option>
+                </select>
+            </div>
+
+            <!-- Add Task Section -->
             <div class="input-section">
-                <input type="text" id="input2" placeholder="Add new task...">
-                <button onclick="addTask(2)">Add</button>
+                <input type="text" id="taskInput" placeholder="Add new task..." class="task-input">
+                <input type="date" id="dueDate" class="due-date-input">
+                <select id="prioritySelect" class="priority-select">
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                </select>
+                <button onclick="addTask()" class="btn-add">Add Task</button>
+            </div>
+
+            <!-- Todo List -->
+            <div class="todo-list" id="todoList">
+                <!-- Tasks will be added here dynamically -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button onclick="clearCompleted()" class="btn-secondary">Clear Completed</button>
+                <button onclick="clearAll()" class="btn-danger">Clear All</button>
+                <button onclick="exportTodos()" class="btn-secondary">Export</button>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
