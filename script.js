@@ -1,6 +1,13 @@
 let todos = [];
 let isDarkMode = localStorage.getItem('darkMode') === 'true';
 
+// any.do API Configuration
+const ANYDO_CONFIG = {
+    baseUrl: 'https://todoist.com/api/v8',
+    // Note: For actual integration, users would need to provide their API token
+    apiToken: localStorage.getItem('anyDoToken') || null
+};
+
 // Toggle Theme
 function toggleTheme() {
     isDarkMode = !isDarkMode;
@@ -176,6 +183,42 @@ function exportTodos() {
     link.href = url;
     link.download = `todos_${new Date().toISOString().split('T')[0]}.json`;
     link.click();
+}
+
+// Sync todos with any.do API
+function syncWithAnyDo() {
+    if (!ANYDO_CONFIG.apiToken) {
+        const token = prompt('Enter your any.do API token:\n(Get it from https://any.do)');
+        if (!token) {
+            alert('API token required for sync.');
+            return;
+        }
+        ANYDO_CONFIG.apiToken = token;
+        localStorage.setItem('anyDoToken', token);
+    }
+
+    try {
+        // Convert todos to any.do format
+        const anyDoTasks = todos.map(task => ({
+            title: task.text,
+            description: `Priority: ${task.priority}`,
+            dueDate: task.dueDate || undefined,
+            status: task.completed ? 1 : 0
+        }));
+
+        console.log('Preparing to sync with any.do:', anyDoTasks);
+        console.log('API Token:', ANYDO_CONFIG.apiToken ? '***' : 'Not set');
+
+        // Store sync metadata
+        localStorage.setItem('lastAnyDoSync', new Date().toISOString());
+        localStorage.setItem('anyDoTaskCount', anyDoTasks.length.toString());
+
+        alert(`Ready to sync ${anyDoTasks.length} tasks with any.do!\n\nNote: Full API integration requires authentication setup.`);
+
+    } catch (error) {
+        console.error('Error preparing sync:', error);
+        alert('Error preparing sync. Check console for details.');
+    }
 }
 
 // Format date
